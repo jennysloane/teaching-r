@@ -1,0 +1,55 @@
+---
+title: "How to Publish to RPubs"
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+# R Markdown
+Great for creating beautiful reports with a mix of text/notes and code. R Markdown files can also be easily converted to html, pdf, or word docs
+
+# Insert code
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+library(ggeasy)
+
+gentoo <- penguins %>%
+  filter(species == "Gentoo") %>%
+  na.omit()
+
+ggplot(gentoo, aes(x=bill_length_mm, y=body_mass_g)) +
+  geom_point() +
+  geom_smooth() +
+  labs(title = "Relationship between bill length \nand body mass of Gentoo penguins",
+       x = "Bill Length (mm)",
+       y = "Body Mass") +
+  easy_text_size(20)
+```
+
+# Knit for Preview
+
+# Pretty RMarkdown formats
+- [prettydoc](https://github.com/yixuan/prettydoc)
+```{r eval = FALSE}
+# add this to your YAML
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+```
+
+- [rmdformats](https://github.com/juba/rmdformats)
+```{r eval = FALSE}
+# add this to your YAML
+output: rmdformats::readthedown
+```
+
+# How to publish to RPubs?
+
+1. After you've knit your document, in the viewer pane click the blue icon in the top right corner
+2. Click publish to RPubs and publish!
+3. Provide title and URL 
